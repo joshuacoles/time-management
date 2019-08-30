@@ -1,15 +1,36 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faRemoveFormat } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
+import classNames from 'classnames';
 
-export const EditIcon = () => <FontAwesomeIcon icon={faPencilAlt} size={'14px'} color={'#dedede'}/>;
+export const EditIcon = (...props) => <FontAwesomeIcon icon={faPencilAlt} size={'14px'} color={'#dedede'} {...props}/>;
 
-export function Timer({ title, rhs = <EditIcon/>, editing = false, titlePillColor = '#eee', style = {}, titleStyle = {} }) {
-    return <div className="box" style={{ backgroundColor: titlePillColor, ...style }}>
+export const Pill = ({ children, className, ...props }) =>
+    <div className={classNames(['box', className])} {...props}>
+        {children}
+    </div>;
+
+export function Timer({
+                          title,
+                          rhs = <EditIcon/>,
+                          editing = false,
+                          titlePillColor = '#eee',
+                          style = {},
+                          titleStyle = {}, pillProps,
+                      }) {
+    return <Pill style={{ backgroundColor: titlePillColor, ...style }} {...pillProps}>
         <span style={{ margin: '10px', fontSize: '17px', ...titleStyle }}>{title}</span>
 
         {rhs && <span style={{ margin: '10px' }}>{rhs}</span>}
-    </div>;
+    </Pill>;
+}
+
+function SavedTimer(props) {
+    return <Timer
+        pillProps={{ className: 'savedTimer' }}
+        rhs={<span className={'saved-edit-icon'}><EditIcon/></span>}
+        {...props}
+    />;
 }
 
 export function TimerArea({ title, items, containerStyle = {}, titleStyle = {} }) {
@@ -19,7 +40,7 @@ export function TimerArea({ title, items, containerStyle = {}, titleStyle = {} }
         </div>
 
         <div>
-            {items.map((item, index) => <Timer title={item} key={title + index}/>)}
+            {items.map((item, index) => <SavedTimer title={item} key={title + index}/>)}
         </div>
     </div>;
 }

@@ -70,3 +70,11 @@
     flex-grow: 1;
     justify-content: flex-end;
 }
+
+.savedTimer .saved-edit-icon {
+    display: none;
+}
+
+.savedTimer:hover .saved-edit-icon {
+    display: initial;
+}
