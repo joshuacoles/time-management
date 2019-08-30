@@ -1,12 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPencilAlt, faRemoveFormat } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 
-export function Timer({ title }) {
-    return <div className="box" style={{ backgroundColor: '#eee', }}>
-        <span style={{ margin: '10px', fontSize: '17px' }}>{title}</span>
+export const EditIcon = () => <FontAwesomeIcon icon={faPencilAlt} size={'14px'} color={'#dedede'}/>;
 
-        <FontAwesomeIcon icon={faPencilAlt} size={'14px'} color={'#dedede'} style={{ margin: '10px' }}/>
+export function Timer({ title, rhs = <EditIcon/>, editing = false, titlePillColor = '#eee', style = {}, titleStyle = {} }) {
+    return <div className="box" style={{ backgroundColor: titlePillColor, ...style }}>
+        <span style={{ margin: '10px', fontSize: '17px', ...titleStyle }}>{title}</span>
+
+        {rhs && <span style={{ margin: '10px' }}>{rhs}</span>}
     </div>;
 }
 
