@@ -48,10 +48,12 @@ function TextInput(props) {
 }
 
 export function TokenInput({
-    tokens, appendToken, removeToken,
+    tokens, onUpdate,
     style = {}, inputProps = {}, ...props
 }) {
-    const removeLastToken = () => removeToken(tokens[tokens.length - 1]);
+    const appendToken = token => onUpdate([...tokens, token]);
+    const removeToken = token => onUpdate(token.filter(x => x !== token));
+    const removeLastToken = () => onUpdate(tokens.slice(0, -1));
 
     return (
         <div style={{ display: 'inline-flex', flexDirection: 'row', ...style }} {...props}>

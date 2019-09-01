@@ -5,28 +5,8 @@ import { data } from './data';
 import { Pill, Timer, TimerArea } from './UI';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-function CurrentTimer() {
-    return <Timer
-        title={'Current'}
-        titlePillColor="#ddd"
-        editing={true}
-        style={{ width: '100%', marginLeft: '7%' }}
-        titleStyle={{ fontSize: '20px' }}
-        rhs={
-            <span style={{ marginRight: '10px' }}>
-                            <FontAwesomeIcon icon={faCheck} size={'14px'}
-                                             color={'#999'}
-                                             style={{ paddingRight: '10px' }}
-                            />
-
-                            <FontAwesomeIcon icon={faTimes} size={'14px'}
-                                             color={'#999'}
-                            />
-                        </span>
-        }
-    />;
-}
+import TextField from '@material-ui/core/TextField';
+import { TokenInput } from './input/token/tokens';
 
 function CurrentTimer2() {
     return (
@@ -44,46 +24,84 @@ function CurrentTimer2() {
 
             <Pill style={{
                 backgroundColor: '#f7f7f7', margin: '0', position: 'relative',
-                height: '300px', top: '-20px',
+                height: 'fit-content', top: '-20px',
                 width: '100%',
 
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
+                alignItems: 'flex-start',
             }}>
-                {/* Buffer for the -30*/}
+                {/* Buffer for the -20*/}
                 <div style={{ height: '20px' }}/>
 
-                <div style={{
-                    // display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    paddingTop: '10px',
-                    width: '100%',
-                    position: 'relative',
-                    color: '#444',
-                    // fontSize: '10px',
-                }}>
-                    <label htmlFor="name" style={{ fontSize: 'inherit', marginLeft: '7px' }}>Name</label>
-                    <input name="name" style={{
-                        fontSize: 'inherit',
-                        color: 'inherit',
-                        marginRight: '7px',
-                        border: 0,
-                        outline: 0,
-                        backgroundColor: 'transparent',
-                        float: 'right'
-                    }}/>
+                <TextField
+                    label="Description"
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    style={{ marginLeft: '10px', maxHeight: '10em' }}
+                />
 
-                    <div className="underline" style={{
-                        backgroundColor: '#ddd',
-                        border: 0,
-                        height: '1px',
-                        marginTop: '2px',
-                        marginLeft: '2.5px',
-                        width: 'calc(100% - 5px)',
-                    }}/>
+                <TextField
+                    label="Notes"
+                    margin="normal"
+                    variant="outlined"
+                    multiline
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    style={{ marginLeft: '10px' }}
+                />
+
+                <TextField
+                    label="Project"
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{ shrink: true }}
+                    style={{ marginLeft: '10px' }}
+                />
+
+                <TokenInput tokens={[]} onUpdate={tokens => {
+                }}/>
+
+                <TextField
+                    label="Tags"
+                    margin="normal"
+                    variant="outlined"
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    style={{ marginLeft: '10px' }}
+                />
+
+                <div>
+                    <TextField
+                        label="Start"
+                        margin="normal"
+                        variant="outlined"
+                        type="time"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        style={{ marginLeft: '10px' }}
+                    />
+
+
+                    <TextField
+                        label="End"
+                        margin="normal"
+                        variant="outlined"
+                        type="time"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        style={{ marginLeft: '10px' }}
+                    />
                 </div>
+
             </Pill>
         </div>
     );
