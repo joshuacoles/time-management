@@ -1,0 +1,29 @@
+.con {
+    border: 1px #aaa solid;
+    padding: 0.7rem;
+    border-radius: 7px;
+}
+
+.con:hover {
+    border-color: #888;
+}
+
+.con {
+    border-color: #008;
+}
+
+.l {
+    font-size: 14px;
+    color: #aaa;
+    background-color: transparent;
+    padding: 0 0.2rem 0.2rem 0.2rem;
+
+    position: absolute;
+    transform: translate(calc(-100% + 40px), calc(-100% - 0em));
+}
+
+.i {
+    outline: none;
+    border: none;
+    font-size: 14px;
+}
