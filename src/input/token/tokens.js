@@ -44,6 +44,7 @@ function TextInput(props) {
         backgroundColor: 'transparent',
         fontSize: 'inherit',
         color: 'inherit',
+        width: '100%',
     }} onKeyDown={onKeyDown} {...props.inputProps}/>;
 }
 
@@ -52,7 +53,7 @@ export function TokenInput({
     style = {}, inputProps = {}, ...props
 }) {
     const appendToken = token => onUpdate([...tokens, token]);
-    const removeToken = token => onUpdate(token.filter(x => x !== token));
+    const removeToken = token => onUpdate(tokens.filter(x => x !== token));
     const removeLastToken = () => onUpdate(tokens.slice(0, -1));
 
     return (
