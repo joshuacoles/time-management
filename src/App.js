@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import { data } from './data';
@@ -7,8 +7,11 @@ import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import TextField from '@material-ui/core/TextField';
 import { TokenInput } from './input/token/tokens';
+import Bordered from './input/bordered'
 
 function CurrentTimer2() {
+    const [tokens, updateTokens] = useState([]);
+
     return (
         <div style={{ width: '100%', margin: '10px', marginLeft: '7%', marginRight: '15px' }}>
             <Pill style={{ backgroundColor: '#ddd', width: '100%', margin: '0', zIndex: '10', position: 'relative' }}>
@@ -64,8 +67,9 @@ function CurrentTimer2() {
                     style={{ marginLeft: '10px' }}
                 />
 
-                <TokenInput tokens={[]} onUpdate={tokens => {
-                }}/>
+                <Bordered label="Tags" backgroundColor="#f7f7f7" style={{ marginLeft: '10px' }}>
+                    <TokenInput tokens={tokens} onUpdate={updateTokens}/>
+                </Bordered>
 
                 <TextField
                     label="Tags"
@@ -157,11 +161,9 @@ input[type=text]:focus {
 
 function App() {
     return (
-        <div className="App" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+        <div className="App">
             <div className="saved-timers">
-                {Object.entries(data).map(([title, items]) =>
-                    <TimerArea title={title} items={items}/>
-                )}
+                {Object.entries(data).map(([title, items]) => <TimerArea title={title} items={items}/>)}
             </div>
 
             <div className="current-timer">
